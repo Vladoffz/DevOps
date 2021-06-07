@@ -1,0 +1,27 @@
+{ "family": "epam-final-gundarchuk", "containerDefinitions": [ { "image": "557506591823.dkr.ecr.us-east-2.amazonaws.com/api_crud:latest", "name":
+"testscrudapi", "essential": true,
+"memory":100, "portMappings": [ { "hostPort": 81, "protocol": "tcp", "containerPort": 81
+}
+]
+},
+{ "image": "557506591823.dkr.ecr.us-east-2.amazonaws.com/api_autorization:latest", "name": "authorizationapi", "essential":
+true,
+"memory":100, "portMappings": [ { "hostPort": 82, "protocol": "tcp", "containerPort": 82
+}
+]
+},
+{ "image": "557506591823.dkr.ecr.us-east-2.amazonaws.com/api_test_process:latest", "name": "testprocessapi", "essential": true,
+"memory":100,
+"portMappings": [ { "hostPort": 83, "protocol": "tcp", "containerPort": 83
+}
+], "links": [ "testscrudapi:testscrudapi" ]
+},
+{ "image": "557506591823.dkr.ecr.us-east-2.amazonaws.com/api_gateway:latest", "name": "gatewayapi", "essential": true,
+"memory":100,
+"portMappings": [ { "hostPort": 84, "protocol": "tcp", "containerPort": 84
+}
+], "links": [ "testscrudapi:testscrudapi", "authorizationapi:authorizationapi", "testprocessapi:testprocessapi" ]
+}
+]
+}
+

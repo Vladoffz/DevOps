@@ -1,0 +1,23 @@
+---
+- name: Configure Frontend Server
+  hosts: prod
+  become: yes
+  tasks:
+
+    - name: Install Nginx Requirements
+      apt:
+        update_cache: yes
+        name: nginx
+      become: yes
+    - name: Install PHP Requirements
+      apt:
+        update_cache: yes
+        name: php-fpm
+      become: yes
+    - name: Install PHP Curl
+      apt:
+        update_cache: yes
+        name: php-curl
+      become: yes
+
+
